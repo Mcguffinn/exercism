@@ -1,0 +1,11 @@
+{
+  "pangram/pangram_test.py::PangramTest::test_pangram_with_mixedcase_and_punctuation": true, 
+  "pangram/pangram_test.py::PangramTest::test_pangram_with_numbers": true, 
+  "pangram/pangram_test.py::PangramTest::test_pangram_with_only_lower_case": true, 
+  "pangram/pangram_test.py::PangramTest::test_pangram_with_underscores": true, 
+  "pangram/pangram_test.py::PangramTest::test_recognizes_a_perfect_lower_case_pangram": true, 
+  "robot-name/robot_name_test.py": true, 
+  "triangle/triangle_test.py::is_equilateralTests": true, 
+  "triangle/triangle_test.py::is_isoscelesTests": true, 
+  "triangle/triangle_test.py::is_scaleneTests": true
+}
