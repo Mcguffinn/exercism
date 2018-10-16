@@ -1,6 +1,6 @@
 import unittest
 
-from allergies import Allergies
+from allergens import Allergies
 
 # Python 2/3 compatibility
 if not hasattr(unittest.TestCase, 'assertCountEqual'):

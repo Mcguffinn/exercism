@@ -14,27 +14,23 @@ class Allergies(object):
         ]
 
         self.score = score if score <= 255 else score - 256
-        self.lst = self.make_allergy_list()      
 
     def is_allergic_to(self, item):
-        return self.lst
-    
-    def make_allergy_list(self):
-        computed_score = 0
+        return item in self.lst
+
+    @property
+    def lst(self):
+        crt_score = 0
         allergies = []
 
         for allergen, value in self.allergens:
-            tv = computed_score + value
+            new_score = crt_score + value
 
-            if tv == self.score:
+            if new_score == self.score:
                 allergies.append(allergen)
                 break
-
-            if tv < self.score:
-                computed_score = tv
+            if new_score < self.score:
+                crt_score = new_score
                 allergies.append(allergen)
-
-        return allergies    
-
-
- 
+        
+        return allergies
