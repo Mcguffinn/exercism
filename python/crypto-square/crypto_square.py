@@ -21,5 +21,4 @@ def encode(plain_text):
     crypt = ceil(sqrt(len(filtered)))
     print(crypt, filtered)
 
-    thing =  ' '.join([filtered[x::crypt] for x in range(crypt)])
-    return thing
+    return ' '.join([filtered[x::crypt] for x in range(crypt)])
