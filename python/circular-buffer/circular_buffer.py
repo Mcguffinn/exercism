@@ -12,13 +12,11 @@ class CircularBuffer(object):
     def __init__(self, capacity):
         self.capacity = capacity
         self._buffer = []
-        self.position = 0
         
     def read(self):
         try:
-            print('wrote',self._buffer) 
-            r = self._buffer.pop(self.position)
-            
+            print('read',self._buffer) 
+            r = self._buffer.pop(0)            
         except IndexError:
             raise BufferEmptyException('buffer is empty')        
 
@@ -32,7 +30,12 @@ class CircularBuffer(object):
         self._buffer.append(data)
 
     def overwrite(self, data):
-        self._buffer[1:-1] = data
+        try:
+            self.write(data)
+        except BufferFullException:
+            self.read()
+            self.write(data)
+        # self._buffer.append(data)
 
     def clear(self):
-        pass
+        self._buffer = []
