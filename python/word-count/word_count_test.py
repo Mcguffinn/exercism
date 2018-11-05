@@ -90,6 +90,5 @@ class WordCountTest(unittest.TestCase):
             {'hey': 1, 'my': 1, 'spacebar': 1, 'is': 1, 'broken': 1}
         )
 
-
 if __name__ == '__main__':
     unittest.main()

@@ -1,24 +1,21 @@
 def verify(isbn):
-    isbn = isbn.split("-")
-    isbn = ''.join(isbn)
+    isbn = isbn.replace('-','')
+    y = 0
 
-    count = 0
-
-    #check if its tthe right length
-    if len(isbn) != 10:
+    if len(isbn) <= 9 or len(isbn) > 10:
         return False
-
-    for a, x in enumerate(isbn):
-
-        if x == "X" and a == 9:
+    
+    for a,x in enumerate(isbn):
+        
+        if x == 'X' and a == 9:
             x = 10
-        
-        # calculate
+        # print(x,type(x),x.isdigit()
         if x == 10 or x.isdigit():
-            count += int(x) * (10 - a)
-        else: 
+            # pass
+            y += int(x) * (10 - a)
+            print(y)
+        else:
             return False
-        
-    print(count)
-    return count % 11 == 0
-
+    
+    print(y)
+    return y % 11 == 0
