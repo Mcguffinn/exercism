@@ -1,27 +1,33 @@
-import re 
 class Phone(object):
-    def __init__(self, phone_number):        
-        self.number = self.clean(phone_number)        
-        self.area_code = self.clean(phone_number)[0:3]
-        
-        if len(self.number) <= 9 or len(self.number) > 11 :
-            raise ValueError('Wrong')
-        if self.number[3] in "01":
-            raise ValueError('Wrong')
-        if self.area_code[0] in '01':
-            raise ValueError('Wrong')
-        
-    def pretty(self):
-        cleaned = "({}) {}-{}".format(self.number[0:3],self.number[3:6],self.number[6:])
-        return cleaned
-
-    def clean(self, phone_number):
-        sort = ''.join([d for d in phone_number if d.isdigit()])
-        if len(sort) == 11 and sort[0] == '1':
-            sort = sort[1:]
-        elif len(sort) == 10:
-            pass
+    def __init__(self, phone_number):
+        # invalid = set()
+        self.holder = phone_number
+        raw = self.cleaner(self.holder)
+        if raw[0] == '1':
+            self.number = raw[1:]
         else:
-            raise ValueError('Wrong')
+            self.number = raw
         
-        return sort
+        self.area_code = self.number[0:3]
+        self.exchange = self.number[3:6]
+        self.rest = self.number[6:]
+
+        if len(self.number) <= 9 or len(self.number) > 11:
+            raise ValueError('Invalid num')
+        if self.number[0] != '1' and len(self.number) >= 11:
+            raise ValueError('Invalid num')
+        if self.exchange[0] in ('1','0'):
+            raise ValueError('invalid num')
+        if self.area_code[0] in ('1','0'):
+            raise ValueError('Invalid num') 
+
+        print(raw[1:])
+        print(self.area_code)
+    
+    def cleaner(self, anything):
+        clean = ''.join(c for c in self.holder if c.isdigit())
+        return clean
+
+    def pretty(self,):
+        outcome = '({}) {}-{}'.format(self.area_code, self.exchange,self.rest)
+        return outcome
